@@ -10,23 +10,26 @@ namespace WindowsFormsApp1
 {
     class ConcreteImp2 : AImplementor
     {
-        override public void DrawLine(PointF sp, PointF fp, Graphics g)
+        public ConcreteImp2(Graphics g) : base(g) { }
+        override public void DrawLine(PointF sp, PointF fp)
         {
             Pen pen = new Pen(Color.Black, 4);
             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             g.DrawLine(pen, sp, fp);
         }
-        override public void DrawStartPoint(PointF p, Graphics g)
+        override public void DrawStartPoint(PointF sp, PointF fp)
         {
             Pen pen = new Pen(Color.Black, 4);
             pen.StartCap = System.Drawing.Drawing2D.LineCap.SquareAnchor;
-            g.DrawLine(pen, p, new PointF((p.X + 1), (p.Y + 1)));
+            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            g.DrawLine(pen, sp, fp);
         }
-        override public void DrawFinishPoint(PointF ps, PointF pf, Graphics g)
+        override public void DrawFinishPoint(PointF sp, PointF fp)
         {
             Pen pen = new Pen(Color.Black, 4);
             pen.EndCap = System.Drawing.Drawing2D.LineCap.SquareAnchor;
-            g.DrawLine(pen, ps, pf);
+            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            g.DrawLine(pen, sp, fp);
         }
     }
 }

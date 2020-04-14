@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
         {
             imp = _imp;
         }
-        public abstract void Draw(int n, Graphics g);
+        public abstract void Draw(int n);
         public abstract IPoint GetPoint(double t, out IPoint p);
     }
 }

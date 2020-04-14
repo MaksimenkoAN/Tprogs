@@ -10,8 +10,13 @@ namespace WindowsFormsApp1
 {
     abstract class AImplementor
     {
-        abstract public void DrawLine(PointF sp, PointF fp, Graphics g);
-        abstract public void DrawStartPoint(PointF p, Graphics g);
-        abstract public void DrawFinishPoint(PointF ps, PointF pf, Graphics g);
+        protected Graphics g;
+        public AImplementor(Graphics _g)
+        {
+            g = _g;
+        }
+        abstract public void DrawLine(PointF sp, PointF fp);
+        abstract public void DrawStartPoint(PointF sp, PointF fp);
+        abstract public void DrawFinishPoint(PointF sp, PointF fp);
     }
 }

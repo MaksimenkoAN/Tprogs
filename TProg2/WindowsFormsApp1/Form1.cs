@@ -27,11 +27,11 @@ namespace WindowsFormsApp1
             IPoint d = new Point(92, 67);
             var g1 = panel1.CreateGraphics();
             var g2 = panel2.CreateGraphics();
-            AVisualCurve ac = new VisualLine(new ConcreteImp2(), a, b);
+            AVisualCurve ac = new VisualLine(new ConcreteImp2(g1), a, b);
             panel1.DrawToBitmap(bm1, new Rectangle(0, 0, bm1.Width, bm1.Height));
-            ac.Draw(8, g1);
-            AVisualCurve ac1 = new VisualBezier(new ConcreteImp1(), a, b, c ,d);
-            ac1.Draw(8, g2);
+            ac.Draw(8);
+            AVisualCurve ac1 = new VisualBezier(new ConcreteImp1(g2), a, b, c ,d);
+            ac1.Draw(8);
             g1.Save();
             g2.Save();
             button2.Enabled = true;

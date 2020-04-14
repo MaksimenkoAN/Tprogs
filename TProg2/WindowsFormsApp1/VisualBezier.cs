@@ -25,27 +25,31 @@ namespace WindowsFormsApp1
             p = lp;
             return p;
         }
-        override public void Draw( int n, Graphics g)
+        override public void Draw( int n)
         {
             ICurve _bezier = new Bezier(a, b, c, d);
             IPoint sp = a;
             double t = 0;
+            _bezier.GetPoint((1.0 / n), out IPoint fp);
+
             float spxf = Convert.ToSingle(sp.getX()), spyf = Convert.ToSingle(sp.getY()), fpxf = 0, fpyf = 0;
-            imp.DrawStartPoint(new PointF(spxf, spyf), g);
+            fpxf = Convert.ToSingle(fp.getX());
+            fpyf = Convert.ToSingle(fp.getY());
+            imp.DrawStartPoint(new PointF(spxf, spyf), new PointF(fpxf, fpyf));
             for (int i = 1; i <= n; i++)
             {
                 t += 1.0 / n;
-                _bezier.GetPoint(t, out IPoint fp);
-                fpxf = Convert.ToSingle(fp.getX());
-                fpyf = Convert.ToSingle(fp.getY());
-                imp.DrawLine(new PointF(spxf,spyf), new PointF(fpxf, fpyf), g);
+                _bezier.GetPoint(t, out IPoint fp1);
+                fpxf = Convert.ToSingle(fp1.getX());
+                fpyf = Convert.ToSingle(fp1.getY());
+                imp.DrawLine(new PointF(spxf,spyf), new PointF(fpxf, fpyf));
                 if (i != n)
                 {
                     spxf = fpxf;
                     spyf = fpyf;
                 }
             }
-            imp.DrawFinishPoint(new PointF(spxf, spyf), new PointF(fpxf, fpyf), g);
+            imp.DrawFinishPoint(new PointF(spxf, spyf), new PointF(fpxf, fpyf));
         }
     }
 }
