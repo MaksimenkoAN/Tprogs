@@ -33,8 +33,19 @@ namespace WindowsFormsApp1
             IPoint b = new Point(100, 0);
             IPoint c = new Point(17, 67);
             IPoint d = new Point(92, 67);
-            IDrawable nbezier = new VisualBezier(a, b, c, d);
+            AVisualCurve nbezier = new VisualBezier(a, b, c, d);
             nbezier.Draw(black_pen, sender, e, 0.01);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            Pen black_pen = new Pen(Color.Black, 5);
+            IPoint a = new Point(0, 100);
+            IPoint b = new Point(100, 0);
+            IPoint c = new Point(17, 67);
+            IPoint d = new Point(92, 67);
+            AVisualCurve nbezier = new VisualBezier(a, b, c, d);
+            nbezier.Draw(black_pen, sender, e, 0.5);
         }
     }
 }
