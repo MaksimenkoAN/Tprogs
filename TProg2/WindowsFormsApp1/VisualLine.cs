@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
     class VisualLine: AVisualCurve
     {
         private IPoint a, b;
-        public VisualLine(AImplementor _imp, int n, IPoint _a, IPoint _b):base(_imp, n)
+        public VisualLine(IImplementor _imp, int n, IPoint _a, IPoint _b):base(_imp, n)
         {
             a = _a;
             b = _b;

@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
     class VisualBezier: AVisualCurve
     {
         private IPoint a, b, c, d;
-        public VisualBezier(AImplementor _imp, int n, IPoint _a, IPoint _b, IPoint _c, IPoint _d):base(_imp, n)
+        public VisualBezier(IImplementor _imp, int n, IPoint _a, IPoint _b, IPoint _c, IPoint _d):base(_imp, n)
         {
             a = _a;
             b = _b;

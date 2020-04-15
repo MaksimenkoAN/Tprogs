@@ -28,9 +28,11 @@ namespace WindowsFormsApp1
             g1.Clear(Color.White);
             Graphics g2 = Graphics.FromImage(pictureBox2.Image);
             g2.Clear(Color.White);
-            IDrawable ac = new VisualLine(new ConcreteImp1(g1), n1, a, b);
+            IImplementor imp1 = new ConcreteImp1(g1);
+            IImplementor imp2 = new ConcreteImp1(g2);
+            IDrawable ac = new VisualLine(imp1, n1, a, b);
             ac.Draw();
-            IDrawable ac1 = new VisualBezier(new ConcreteImp2(g2), n2, a, b, c ,d);
+            IDrawable ac1 = new VisualBezier(imp2, n2, a, b, c ,d);
             ac1.Draw();
             button2.Enabled = true;
             button3.Enabled = true;
