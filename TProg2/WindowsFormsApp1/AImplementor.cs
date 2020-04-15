@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace WindowsFormsApp1
 {
-    abstract class AImplementor
+    abstract class AImplementor: IImplementor
     {
         protected Graphics g;
         public AImplementor(Graphics _g)

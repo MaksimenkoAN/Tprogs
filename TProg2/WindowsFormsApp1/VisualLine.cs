@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
     class VisualLine: AVisualCurve
     {
         private IPoint a, b;
-        public VisualLine(AImplementor _imp, IPoint _a, IPoint _b):base(_imp)
+        public VisualLine(AImplementor _imp, int n, IPoint _a, IPoint _b):base(_imp, n)
         {
             a = _a;
             b = _b;
@@ -23,22 +23,22 @@ namespace WindowsFormsApp1
             p = lp;
             return p;
         }
-        override public void Draw(int n)
+        override public void Draw()
         {
             ICurve _line = new Line(a, b);
             IPoint sp = a;
             double t = 0;
-            _line.GetPoint((1.0 / n), out IPoint fp);
-            float spxf = Convert.ToSingle(sp.getX()), spyf = Convert.ToSingle(sp.getY()), fpxf = 0, fpyf = 0;
-            fpxf = Convert.ToSingle(fp.getX());
-            fpyf = Convert.ToSingle(fp.getY());
+            _line.GetPoint((1.0 / n), out IPoint fps);
+            float spxf = Convert.ToSingle(sp.getX()), spyf = Convert.ToSingle(sp.getY()), fpxf, fpyf;
+            fpxf = Convert.ToSingle(fps.getX());
+            fpyf = Convert.ToSingle(fps.getY());
             imp.DrawStartPoint(new PointF(spxf, spyf), new PointF(fpxf, fpyf));
-            for (int i = 1; i <= n; i++)
+            for (int i = 1; i <=n; i++)
             {
                 t += 1.0 / n;
-                _line.GetPoint(t, out IPoint fp1);
-                fpxf = Convert.ToSingle(fp1.getX());
-                fpyf = Convert.ToSingle(fp1.getY());
+                _line.GetPoint(t, out IPoint fp);
+                fpxf = Convert.ToSingle(fp.getX());
+                fpyf = Convert.ToSingle(fp.getY());
                 imp.DrawLine(new PointF(spxf,spyf), new PointF(fpxf, fpyf));
                 if (i != n)
                 {
@@ -46,6 +46,9 @@ namespace WindowsFormsApp1
                     spyf = fpyf;
                 }
             }
+            _line.GetPoint(1, out IPoint fpf);
+            fpxf = Convert.ToSingle(fpf.getX());
+            fpyf = Convert.ToSingle(fpf.getY());
             imp.DrawFinishPoint(new PointF(spxf, spyf), new PointF(fpxf, fpyf));
         }
     }

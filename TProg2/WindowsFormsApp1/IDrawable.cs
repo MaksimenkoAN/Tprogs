@@ -10,6 +10,6 @@ namespace WindowsFormsApp1
 {
     interface IDrawable
     {
-        void Draw(int n);
+        void Draw();
     }
 }

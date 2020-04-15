@@ -60,6 +60,7 @@
     </Compile>
     <Compile Include="ICurve.cs" />
     <Compile Include="IDrawable.cs" />
+    <Compile Include="IImplementor.cs" />
     <Compile Include="IPoint.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Point.cs" />

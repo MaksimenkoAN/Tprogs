@@ -18,6 +18,8 @@ namespace WindowsFormsApp1
             IPoint b = new Point(100, 10);
             IPoint c = new Point(17, 67);
             IPoint d = new Point(92, 67);
+            int n1 = 8;
+            int n2 = 8;
             Bitmap bmp1 = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Bitmap bmp2 = new Bitmap(pictureBox2.Width, pictureBox2.Height);
             pictureBox1.Image = bmp1; 
@@ -26,10 +28,10 @@ namespace WindowsFormsApp1
             g1.Clear(Color.White);
             Graphics g2 = Graphics.FromImage(pictureBox2.Image);
             g2.Clear(Color.White);
-            AVisualCurve ac = new VisualLine(new ConcreteImp1(g1), a, b);
-            ac.Draw(8);
-            AVisualCurve ac1 = new VisualBezier(new ConcreteImp2(g2), a, b, c ,d);
-            ac1.Draw(8);
+            IDrawable ac = new VisualLine(new ConcreteImp1(g1), n1, a, b);
+            ac.Draw();
+            IDrawable ac1 = new VisualBezier(new ConcreteImp2(g2), n2, a, b, c ,d);
+            ac1.Draw();
             button2.Enabled = true;
             button3.Enabled = true;
         }
