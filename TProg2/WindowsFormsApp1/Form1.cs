@@ -7,16 +7,9 @@ namespace WindowsFormsApp1
 
     public partial class Form1 : Form
     {
-        Bitmap bm1;
         public Form1()
         {
             InitializeComponent();
-            bm1 = new Bitmap(panel1.Width, panel1.Height);
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -25,35 +18,110 @@ namespace WindowsFormsApp1
             IPoint b = new Point(100, 10);
             IPoint c = new Point(17, 67);
             IPoint d = new Point(92, 67);
-            var g1 = panel1.CreateGraphics();
-            var g2 = panel2.CreateGraphics();
-            AVisualCurve ac = new VisualLine(new ConcreteImp2(g1), a, b);
-            panel1.DrawToBitmap(bm1, new Rectangle(0, 0, bm1.Width, bm1.Height));
+            Bitmap bmp1 = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Bitmap bmp2 = new Bitmap(pictureBox2.Width, pictureBox2.Height);
+            pictureBox1.Image = bmp1; 
+            pictureBox2.Image = bmp2;
+            Graphics g1 = Graphics.FromImage(pictureBox1.Image);
+            g1.Clear(Color.White);
+            Graphics g2 = Graphics.FromImage(pictureBox2.Image);
+            g2.Clear(Color.White);
+            AVisualCurve ac = new VisualLine(new ConcreteImp1(g1), a, b);
             ac.Draw(8);
-            AVisualCurve ac1 = new VisualBezier(new ConcreteImp1(g2), a, b, c ,d);
+            AVisualCurve ac1 = new VisualBezier(new ConcreteImp2(g2), a, b, c ,d);
             ac1.Draw(8);
-            g1.Save();
-            g2.Save();
             button2.Enabled = true;
             button3.Enabled = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Bitmap bm = new Bitmap(panel1.Width, panel1.Height);
-            panel1.DrawToBitmap(bm, new Rectangle(0, 0, bm.Width, bm.Height));
-
-            SaveFileDialog sfd = new SaveFileDialog();
-
-            if (sfd.ShowDialog() == DialogResult.OK)
+            SaveFileDialog savedialog = new SaveFileDialog();
+            savedialog.Title = "Сохранить картинку как ...";
+            savedialog.OverwritePrompt = true;
+            savedialog.CheckPathExists = true;
+            savedialog.Filter =
+                "Bitmap File(*.bmp)|*.bmp|" +
+                "GIF File(*.gif)|*.gif|" +
+                "JPEG File(*.jpg)|*.jpg|" +
+                "TIF File(*.tif)|*.tif|" +
+                "PNG File(*.png)|*.png";
+            savedialog.ShowHelp = true;
+            // If selected, save
+            if (savedialog.ShowDialog() == DialogResult.OK)
             {
-                bm.Save(sfd.FileName);
+                // Get the user-selected file name
+                string fileName = savedialog.FileName;
+                // Get the extension
+                string strFilExtn =
+                    fileName.Remove(0, fileName.Length - 3);
+                // Save file
+                switch (strFilExtn)
+                {
+                    case "bmp":
+                        pictureBox1.Image.Save(fileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                        break;
+                    case "jpg":
+                        pictureBox1.Image.Save(fileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        break;
+                    case "gif":
+                        pictureBox1.Image.Save(fileName, System.Drawing.Imaging.ImageFormat.Gif);
+                        break;
+                    case "tif":
+                        pictureBox1.Image.Save(fileName, System.Drawing.Imaging.ImageFormat.Tiff);
+                        break;
+                    case "png":
+                        pictureBox1.Image.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+            SaveFileDialog savedialog = new SaveFileDialog();
+            savedialog.Title = "Сохранить картинку как ...";
+            savedialog.OverwritePrompt = true;
+            savedialog.CheckPathExists = true;
+            savedialog.Filter =
+                "Bitmap File(*.bmp)|*.bmp|" +
+                "GIF File(*.gif)|*.gif|" +
+                "JPEG File(*.jpg)|*.jpg|" +
+                "TIF File(*.tif)|*.tif|" +
+                "PNG File(*.png)|*.png";
+            savedialog.ShowHelp = true;
+            // If selected, save
+            if (savedialog.ShowDialog() == DialogResult.OK)
+            {
+                // Get the user-selected file name
+                string fileName = savedialog.FileName;
+                // Get the extension
+                string strFilExtn =
+                    fileName.Remove(0, fileName.Length - 3);
+                // Save file
+                switch (strFilExtn)
+                {
+                    case "bmp":
+                        pictureBox2.Image.Save(fileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                        break;
+                    case "jpg":
+                        pictureBox2.Image.Save(fileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        break;
+                    case "gif":
+                        pictureBox2.Image.Save(fileName, System.Drawing.Imaging.ImageFormat.Gif);
+                        break;
+                    case "tif":
+                        pictureBox2.Image.Save(fileName, System.Drawing.Imaging.ImageFormat.Tiff);
+                        break;
+                    case "png":
+                        pictureBox2.Image.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
