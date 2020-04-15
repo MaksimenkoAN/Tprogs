@@ -49,7 +49,8 @@ namespace WindowsFormsApp1
                 "GIF File(*.gif)|*.gif|" +
                 "JPEG File(*.jpg)|*.jpg|" +
                 "TIF File(*.tif)|*.tif|" +
-                "PNG File(*.png)|*.png";
+                "PNG File(*.png)|*.png" +
+                "SVG File(*.txt)|*.txt";
             savedialog.ShowHelp = true;
             // If selected, save
             if (savedialog.ShowDialog() == DialogResult.OK)

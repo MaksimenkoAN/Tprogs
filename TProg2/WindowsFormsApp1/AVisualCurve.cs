@@ -10,8 +10,19 @@ namespace WindowsFormsApp1
 {
     abstract class AVisualCurve: IDrawable, ICurve
     {
-        protected IImplementor imp;
+        private IImplementor imp;
         protected int n;
+        protected void DrawLine(PointF sp, PointF fp) {
+            imp.DrawLine(sp, fp);
+        }
+        protected void DrawStartPoint(PointF sp, PointF fp)
+        {
+            imp.DrawStartPoint(sp, fp);
+        }
+        protected void DrawFinishPoint(PointF sp, PointF fp)
+        {
+            imp.DrawFinishPoint(sp, fp);
+        }
         public AImplementor AImplementor
         {
             set { imp = value; }

@@ -32,14 +32,14 @@ namespace WindowsFormsApp1
             float spxf = Convert.ToSingle(sp.getX()), spyf = Convert.ToSingle(sp.getY()), fpxf, fpyf;
             fpxf = Convert.ToSingle(fps.getX());
             fpyf = Convert.ToSingle(fps.getY());
-            imp.DrawStartPoint(new PointF(spxf, spyf), new PointF(fpxf, fpyf));
+            DrawStartPoint(new PointF(spxf, spyf), new PointF(fpxf, fpyf));
             for (int i = 1; i <=n; i++)
             {
                 t += 1.0 / n;
                 _line.GetPoint(t, out IPoint fp);
                 fpxf = Convert.ToSingle(fp.getX());
                 fpyf = Convert.ToSingle(fp.getY());
-                imp.DrawLine(new PointF(spxf,spyf), new PointF(fpxf, fpyf));
+                DrawLine(new PointF(spxf,spyf), new PointF(fpxf, fpyf));
                 if (i != n)
                 {
                     spxf = fpxf;
@@ -49,7 +49,7 @@ namespace WindowsFormsApp1
             _line.GetPoint(1, out IPoint fpf);
             fpxf = Convert.ToSingle(fpf.getX());
             fpyf = Convert.ToSingle(fpf.getY());
-            imp.DrawFinishPoint(new PointF(spxf, spyf), new PointF(fpxf, fpyf));
+            DrawFinishPoint(new PointF(spxf, spyf), new PointF(fpxf, fpyf));
         }
     }
 }
