@@ -17,12 +17,13 @@ namespace WindowsFormsApp1
         public override IPoint GetPoint(double t, out IPoint p)
         {
             p = this.component.GetPoint(t_start, out IPoint result);
-            if (t == 0.0)
-                return p;
-            else if (t == 1.0)
-                p = this.component.GetPoint(t_finish, out IPoint p_finish);
-            else if ((t_start < t) && (t > t_finish))
-                p = this.component.GetPoint((t_start + t * (t_finish - t_start)), out IPoint p_result);
+            if (t == 0)
+                t = t_start;
+            else if (t == 1)
+                t = t_finish;
+            else if ((0.0 < t) && (t < 1.0))
+                t = t_start + t * (t_finish - t_start);
+            p = this.component.GetPoint(t, out IPoint p_result);
             return p;
         }
     }
