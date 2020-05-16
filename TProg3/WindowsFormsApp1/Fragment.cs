@@ -16,10 +16,9 @@ namespace WindowsFormsApp1
         }
         public override IPoint GetPoint(double t, out IPoint p)
         {
-            p = this.component.GetPoint(t_start, out IPoint result);
-            if (t == 0)
+            if (t == 0.0)
                 t = t_start;
-            else if (t == 1)
+            else if (t == 1.0)
                 t = t_finish;
             else if ((0.0 < t) && (t < 1.0))
                 t = t_start + t * (t_finish - t_start);
